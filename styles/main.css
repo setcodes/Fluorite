@@ -195,7 +195,7 @@ input:placeholder {
 	top: 10px;
 	left: 45px;
 }
-.habbit__comment-submit {
+.habbit__btn-submit {
 	background: #edecfe;
 	border-radius: 9px;
 	border: none;
@@ -205,7 +205,100 @@ input:placeholder {
 	padding: 15px 33px;
 	cursor: pointer;
 }
-.habbit__comment-submit:hover {
+.habbit__btn-submit:hover {
 	background: #5051f9;
 	color: white;
+}
+
+/* Popup */
+
+.cover {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.25);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.cover--hidden {
+	/* display: none; */
+}
+.popup {
+	background: #ffffff;
+	box-shadow: 0px 8px 14px 12px rgba(56, 56, 56, 0.05);
+	border-radius: 10px;
+	width: 100%;
+	max-width: 600px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+}
+.popup__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	gap: 15px;
+}
+.popup__form input {
+	width: 100%;
+}
+.popup__close {
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+.popup__title {
+	font-size: 24px;
+	line-height: 27px;
+	text-align: center;
+	margin-bottom: 20px;
+	color: #000000;
+}
+.icon__lable {
+	font-size: 14px;
+	line-height: 16px;
+	margin-bottom: 10px;
+
+	color: #768396;
+}
+.icon__select {
+	display: flex;
+	gap: 25px;
+	margin-bottom: 20px;
+}
+.icon {
+	width: 55px;
+	height: 55px;
+	border: 1px solid #5051f9;
+	border-radius: 14px;
+	background: white;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.icon--active {
+	background: #5051f9;
+}
+.icon--active img {
+	filter: brightness(0) invert(1);
+}
+.icon:hover {
+	background: #5051f9;
+}
+.icon:hover img {
+	filter: brightness(0) invert(1);
+}
+.icon--active:hover {
+	background: #6a6afb;
 }
