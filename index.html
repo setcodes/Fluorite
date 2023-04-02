@@ -61,14 +61,14 @@
 						<button class="icon" onclick="setIcon(this, 'sport')">
 							<img src="/assets/images/sport.svg" alt="спорт" >
 						</button>
-						<button class="icon icon--active" onclick="setIcon(this,'food')">
+						<button class="icon" onclick="setIcon(this,'food')">
 							<img src="/assets/images/food.svg" alt="еда">
 						</button>
 						<button class="icon" onclick="setIcon(this, 'water')">
 							<img src="/assets/images/water.svg" alt="вода">
 						</button>
 					</div>
-					<form class="popup__form">
+					<form class="popup__form" onsubmit="addNewHabbit(event)">
 						<input name="title" type="text" placeholder="Название">
 						<input name="target" type="number" placeholder="Цель">
 						<input name="icon" type="text" hidden placeholder="Иконка">

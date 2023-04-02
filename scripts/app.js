@@ -19,6 +19,8 @@ const page = {
 	popup: {
 		popupCover: document.querySelector('.cover'),
 		iconField: document.querySelector('.popup__form input[name="icon"]'),
+		iconLabel: document.querySelector('.icon__lable'),
+		icons: document.querySelectorAll('.icon__select .icon'),
 	},
 };
 
@@ -34,7 +36,33 @@ function loadData() {
 function saveData() {
 	localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
 }
-
+function resetForm(form, fields) {
+	for (const field of fields) {
+		form[field].value = '';
+	}
+}
+function validateFormFields(form, fields) {
+	const data = new FormData(form);
+	let res = {};
+	for (const field of fields) {
+		const fieldValue = data.get(field);
+		form[field].classList.remove('input__error');
+		if (!fieldValue) {
+			form[field].classList.add('input__error');
+		}
+		res[field] = fieldValue;
+	}
+	let isValid = true;
+	for (const field of fields) {
+		if (!res[field]) {
+			isValid = false;
+		}
+	}
+	if (!isValid) {
+		return;
+	}
+	return res;
+}
 //render
 function renderMenu(activeHabbit) {
 	for (const habbit of habbits) {
@@ -64,7 +92,9 @@ function renderHeader(activeHabbit) {
 		activeHabbit.days.length / activeHabbit.target > 1
 			? 100
 			: (activeHabbit.days.length / activeHabbit.target) * 100;
-	page.header.progressPercent.innerText = percent.toFixed(0) + '%';
+	page.header.progressPercent.innerText = percent
+		? percent.toFixed(0) + '%'
+		: 0;
 	page.header.progressCoverBar.setAttribute('style', `width:${percent}%`);
 }
 function renderContent(activeHabbit) {
@@ -95,27 +125,23 @@ function render(activeHabbitId) {
 }
 // add day
 function addDay(event) {
-	const form = event.target;
 	event.preventDefault();
-	let data = new FormData(form);
-	let comment = data.get('comment');
-	form['comment'].classList.remove('input__error');
-	if (comment.trim() === '') {
-		form['comment'].classList.add('input__error');
-		form['comment'].setAttribute('placeholder', 'Заполните пожалуйста поле');
+	const data = validateFormFields(event.target, ['comment']);
+	if (!data) {
+		return;
 	}
 	habbits = habbits.map((habbit) => {
 		if (habbit.id === currentHabbitId) {
 			return {
 				...habbit,
-				days: habbit.days.concat([{ comment }]),
+				days: habbit.days.concat([{ comment: data.comment }]),
 			};
 		}
 		return habbit;
 	});
 	render(currentHabbitId);
 	saveData();
-	form['comment'].value = '';
+	resetForm(event.target, ['comment']);
 }
 //remove day
 function removeDay(indexDay) {
@@ -139,11 +165,34 @@ function removeDay(indexDay) {
 function togglePopup() {
 	page.popup.popupCover.classList.toggle('cover--hidden');
 }
-function setIcon(context, icon) {
+function setIcon(context, icon = 'sport') {
 	page.popup.iconField.value = icon;
 	const activeIcon = document.querySelector('.icon.icon--active');
-	activeIcon.classList.remove('icon--active');
+	if (activeIcon) {
+		activeIcon.classList.remove('icon--active');
+	}
 	context.classList.add('icon--active');
+}
+function addNewHabbit(event) {
+	event.preventDefault();
+	const data = validateFormFields(event.target, ['icon', 'title', 'target']);
+	if (!data) {
+		return;
+	}
+	const maxId = habbits.reduce(
+		(acc, habbit) => (acc > habbit.id ? acc : habbit.id),
+		0
+	);
+	habbits.push({
+		id: maxId + 1,
+		icon: data.icon,
+		name: data.title,
+		target: data.target,
+		days: [],
+	});
+	togglePopup();
+	saveData();
+	render(maxId + 1);
 }
 
 // init
