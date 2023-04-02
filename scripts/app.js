@@ -6,6 +6,11 @@ let habbits = [];
 //page
 const page = {
 	menu: document.querySelector('.menu__list'),
+	header: {
+		title: document.querySelector('.title'),
+		progressPercent: document.querySelector('.progress__percent'),
+		progressCoverBar: document.querySelector('.progress__cover-bar'),
+	},
 };
 
 // utils
@@ -47,10 +52,23 @@ function renderMenu(activeHabbit) {
 		}
 	}
 }
+function renderHeader(activeHabbit) {
+	if (!activeHabbit) {
+		return;
+	}
+	page.header.title.innerText = activeHabbit.name;
+	const percent =
+		activeHabbit.days.length / activeHabbit.target > 1
+			? 100
+			: (activeHabbit.days.length / activeHabbit.target) * 100;
+	page.header.progressPercent.innerText = percent.toFixed(0) + '%';
+	page.header.progressCoverBar.setAttribute('style', `width:${percent}%`);
+}
 
 function render(activeHabbitId) {
 	const activeHabbit = habbits.find((habbit) => habbit.id === activeHabbitId);
 	renderMenu(activeHabbit);
+	renderHeader(activeHabbit);
 }
 
 // init
