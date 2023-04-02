@@ -118,6 +118,7 @@ function render(activeHabbitId) {
 	if (!activeHabbit) {
 		return;
 	}
+	document.location.replace(document.location.pathname + '#' + activeHabbitId);
 	currentHabbitId = activeHabbitId;
 	renderMenu(activeHabbit);
 	renderHeader(activeHabbit);
@@ -198,5 +199,11 @@ function addNewHabbit(event) {
 // init
 (() => {
 	loadData();
-	render(habbits[0].id);
+	const hashID = Number(document.location.hash.replace('#', ''));
+	const urlHabbit = habbits.find((el) => el.id === hashID);
+	if (urlHabbit) {
+		render(hashID);
+	} else {
+		render(habbits[0].id);
+	}
 })();
