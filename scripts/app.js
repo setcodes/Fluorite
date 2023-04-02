@@ -16,6 +16,7 @@ const page = {
 		daysContainer: document.getElementById('days'),
 		nextDay: document.querySelector('.habbit__day'),
 	},
+	popupCover: document.querySelector('.cover'),
 };
 
 // utils
@@ -131,6 +132,11 @@ function removeDay(indexDay) {
 	render(currentHabbitId);
 	saveData();
 }
+
+function togglePopup() {
+	page.popupCover.classList.toggle('cover--hidden');
+}
+
 // init
 (() => {
 	loadData();

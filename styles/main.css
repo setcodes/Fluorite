@@ -224,7 +224,7 @@ input:placeholder {
 	justify-content: center;
 }
 .cover--hidden {
-	/* display: none; */
+	display: none;
 }
 .popup {
 	background: #ffffff;
