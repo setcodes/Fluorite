@@ -16,7 +16,10 @@ const page = {
 		daysContainer: document.getElementById('days'),
 		nextDay: document.querySelector('.habbit__day'),
 	},
-	popupCover: document.querySelector('.cover'),
+	popup: {
+		popupCover: document.querySelector('.cover'),
+		iconField: document.querySelector('.popup__form input[name="icon"]'),
+	},
 };
 
 // utils
@@ -132,9 +135,15 @@ function removeDay(indexDay) {
 	render(currentHabbitId);
 	saveData();
 }
-
+//popup
 function togglePopup() {
-	page.popupCover.classList.toggle('cover--hidden');
+	page.popup.popupCover.classList.toggle('cover--hidden');
+}
+function setIcon(context, icon) {
+	page.popup.iconField.value = icon;
+	const activeIcon = document.querySelector('.icon.icon--active');
+	activeIcon.classList.remove('icon--active');
+	context.classList.add('icon--active');
 }
 
 // init

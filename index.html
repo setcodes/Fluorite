@@ -58,19 +58,20 @@
 					<h2 class="popup__title">Новая привычка</h2>
 					<div class="icon__lable">Иконка</div>
 					<div class="icon__select">
-						<button class="icon">
-							<img src="/assets/images/sport.svg" alt="спорт">
+						<button class="icon" onclick="setIcon(this, 'sport')">
+							<img src="/assets/images/sport.svg" alt="спорт" >
 						</button>
-						<button class="icon icon--active">
+						<button class="icon icon--active" onclick="setIcon(this,'food')">
 							<img src="/assets/images/food.svg" alt="еда">
 						</button>
-						<button class="icon">
+						<button class="icon" onclick="setIcon(this, 'water')">
 							<img src="/assets/images/water.svg" alt="вода">
 						</button>
 					</div>
 					<form class="popup__form">
 						<input name="title" type="text" placeholder="Название">
 						<input name="target" type="number" placeholder="Цель">
+						<input name="icon" type="text" hidden placeholder="Иконка">
 						<button class="habbit__btn-submit" type="submit">Добавить</button>
 					</form>
 					<button class="popup__close" onclick="togglePopup()">
