@@ -14,7 +14,72 @@
 		<title>Fluorite</title>
 	</head>
 	<body>
-		<h1>Fluorite</h1>
-		<script src="/scripts/app.js"></script>
+		<div class="app">
+			<div class="panel">
+				<img class="logo" src="/assets/images/fluorite.svg" alt="Fluorite" />
+				<nav class="menu">
+					<div class="menu__list"></div>
+					<button class="menu__add" onclick="togglePopup()">
+						<img src="/assets/images/add.svg" alt="Добавить" />
+					</button>
+				</nav>
+				
+			</div>
+			<div class="content">
+				<header>
+					<h1 class="title">-</h1>
+					<div class="progress">
+						<div class="progress__text">
+							<div class="progress__name">Прогресс</div>
+							<div class="progress__percent"></div>
+						</div>
+						<div class="progress__bar">
+							<div class="progress__cover-bar"></div>
+						</div>
+					</div>
+				</header>
+				<main>
+					<div id="days"></div>
+					<div class="habbit">
+							<div class="habbit__day"></div>
+							<form class="habbit__form" onsubmit="addDay(event)">
+								<input name="comment" class="input__icon-mod" type="text" placeholder="Комментарий">
+								<img class="input__icon" src="/assets/images/comment.svg" alt="Иконка комментария">
+								<button class="habbit__btn-submit" type="submit">
+									Готово
+								</button>
+							</form>
+							
+						</div>
+				</main>
+			</div>
+			<div class="cover cover--hidden">
+				<div class="popup">
+					<h2 class="popup__title">Новая привычка</h2>
+					<div class="icon__lable">Иконка</div>
+					<div class="icon__select">
+						<button class="icon" onclick="setIcon(this, 'sport')">
+							<img src="/assets/images/sport.svg" alt="спорт" >
+						</button>
+						<button class="icon" onclick="setIcon(this,'food')">
+							<img src="/assets/images/food.svg" alt="еда">
+						</button>
+						<button class="icon" onclick="setIcon(this, 'water')">
+							<img src="/assets/images/water.svg" alt="вода">
+						</button>
+					</div>
+					<form class="popup__form" onsubmit="addNewHabbit(event)">
+						<input name="title" type="text" placeholder="Название">
+						<input name="target" type="number" placeholder="Цель">
+						<input name="icon" type="text" hidden placeholder="Иконка">
+						<button class="habbit__btn-submit" type="submit">Добавить</button>
+					</form>
+					<button class="popup__close" onclick="togglePopup()">
+						<img src="/assets/images/close.svg" alt="Закрыть">
+					</button>
+				</div>
+			</div>
+		</main>
+		<script src="/scripts/app.js"/>
 	</body>
 </html>
