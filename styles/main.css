@@ -178,6 +178,9 @@ input {
 	font-size: 14px;
 	line-height: 16px;
 }
+.input__error {
+	border-color: red;
+}
 input:placeholder {
 	font-family: 'Comfortaa';
 	font-weight: 400;

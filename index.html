@@ -39,26 +39,18 @@
 					</div>
 				</header>
 				<main>
-					<div>
-						<div class="habbit">
-							<div class="habbit__day">День 1</div>
-							<div class="habbit__comment">Первый подход всегда даётся тяжело</div>
-							<button class="habbit__delete">
-								<img src="/assets/images/delete.svg" alt="Удалить день">
-							</button>
-						</div>
-						<div class="habbit">
-							<div class="habbit__day">День 2</div>
-							<form class="habbit__form">
-								<input class="input__icon-mod" type="text" placeholder="Комментарий">
+					<div id="days"></div>
+					<div class="habbit">
+							<div class="habbit__day"></div>
+							<form class="habbit__form" onsubmit="addDay(event)">
+								<input name="comment" class="input__icon-mod" type="text" placeholder="Комментарий">
 								<img class="input__icon" src="/assets/images/comment.svg" alt="Иконка комментария">
-								<button class="habbit__comment-submit">
+								<button class="habbit__comment-submit" type="submit">
 									Готово
 								</button>
 							</form>
 							
 						</div>
-					</div>
 				</main>
 			</div>
 		</main>
